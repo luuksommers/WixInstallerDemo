@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLDIR">
+            <Component Id="cmp5BB6BA60FB495FC5344FFA5B2B4E9A1B" Guid="*">
+                <File Id="fil6F931AF737EABE0CC5F5A47C8FC4264F" KeyPath="yes" Source="$(var.MyWindowsService.TargetDir)\MyWindowsService.exe" />
+            </Component>
+            <Component Id="cmp9DF4870793E926E7B1817E47DD4EB0EF" Guid="*">
+                <File Id="fil1AF189C91CB2EF731D3758903B805DA3" KeyPath="yes" Source="$(var.MyWindowsService.TargetDir)\MyWindowsService.exe.config" />
+                <util:XmlFile Id="AppConfigSetSetting1" File="[INSTALLDIR]MyWindowsService.exe.config" Action="setValue" Name="value" Value="1" ElementPath="//configuration/appSettings/add[\[]@key='Setting1'[\]]" Sequence="1" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" xmlns:wix="http://schemas.microsoft.com/wix/2006/wi" xmlns:my="my:my" />
+                <util:XmlFile Id="AppConfigSetSetting2" File="[INSTALLDIR]MyWindowsService.exe.config" Action="setValue" Name="value" Value="2" ElementPath="//configuration/appSettings/add[\[]@key='Setting2'[\]]" Sequence="1" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" xmlns:wix="http://schemas.microsoft.com/wix/2006/wi" xmlns:my="my:my" />
+            </Component>
+            <Component Id="cmp4315D72D07EE11451A56800F20CDF02A" Guid="*">
+                <File Id="fil303E44FEE6CA066158F09F41451E1891" KeyPath="yes" Source="$(var.MyWindowsService.TargetDir)\MyWindowsService.pdb" />
+            </Component>
+            <Component Id="cmp39DC89534EFCCFFAEFA250272983C170" Guid="*">
+                <File Id="filFAE1E462E329715209C1653BD8E61C76" KeyPath="yes" Source="$(var.MyWindowsService.TargetDir)\MyWindowsService.vshost.exe" />
+            </Component>
+            <Component Id="cmp261A6A5F8468CF15617BB2A3D6EEED63" Guid="*">
+                <File Id="fil17E83ADE78A400812E0B1FAD5039A278" KeyPath="yes" Source="$(var.MyWindowsService.TargetDir)\MyWindowsService.vshost.exe.config" />
+            </Component>
+            <Component Id="cmp74FC9E51738540041A48BB094404B6FF" Guid="*">
+                <File Id="fil8C3B7FC55190E232646303AF2249FE0F" KeyPath="yes" Source="$(var.MyWindowsService.TargetDir)\MyWindowsService.vshost.exe.manifest" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="Binaries">
+            <ComponentRef Id="cmp5BB6BA60FB495FC5344FFA5B2B4E9A1B" />
+            <ComponentRef Id="cmp9DF4870793E926E7B1817E47DD4EB0EF" />
+            <ComponentRef Id="cmp4315D72D07EE11451A56800F20CDF02A" />
+            <ComponentRef Id="cmp39DC89534EFCCFFAEFA250272983C170" />
+            <ComponentRef Id="cmp261A6A5F8468CF15617BB2A3D6EEED63" />
+            <ComponentRef Id="cmp74FC9E51738540041A48BB094404B6FF" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>
