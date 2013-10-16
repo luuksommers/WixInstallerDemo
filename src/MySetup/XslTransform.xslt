@@ -28,9 +28,14 @@
   <xsl:template match="wix:Component[wix:File[@Source='$(var.MyWindowsService.TargetDir)\MyWindowsService.exe.config']]">
     <xsl:copy>
       <xsl:apply-templates select="node() | @*" />
-      <util:XmlFile Id="AppConfigSetSetting1" File="[INSTALLDIR]MyWindowsService.exe.config" Action="setValue" Name="value" Value="1" ElementPath="//configuration/appSettings/add[\[]@key='Setting1'[\]]" Sequence="1" />
-      <util:XmlFile Id="AppConfigSetSetting2" File="[INSTALLDIR]MyWindowsService.exe.config" Action="setValue" Name="value" Value="2" ElementPath="//configuration/appSettings/add[\[]@key='Setting2'[\]]" Sequence="1" />
+      <util:XmlFile Id="AppConfigSetSetting1" File="[INSTALLDIR]MyWindowsService.exe.config" Action="setValue" Name="value" Value="[SETTING1]" ElementPath="//configuration/appSettings/add[\[]@key='setting1'[\]]" Sequence="1" />
+      <util:XmlFile Id="AppConfigSetSetting2" File="[INSTALLDIR]MyWindowsService.exe.config" Action="setValue" Name="value" Value="[SETTING2]" ElementPath="//configuration/appSettings/add[\[]@key='setting2'[\]]" Sequence="1" />
     </xsl:copy>
   </xsl:template>
 
+  <xsl:key name="service-search" match="wix:Component[contains(wix:File/@Source, '.vshost.exe')]" use="@Id" />
+
+  <xsl:template match="wix:Component[key('service-search', @Id)]" />
+  <xsl:template match="wix:ComponentRef[key('service-search', @Id)]" />
+  
 </xsl:stylesheet>
