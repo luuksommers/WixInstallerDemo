@@ -16,14 +16,15 @@
     </xsl:copy>
   </xsl:template>
 
-  <!--<xsl:template match="wix:Component[wix:File[@Source='$(var.MyWindowsService.TargetDir)\MyWindowsService.exe']]">
+  <xsl:template match="wix:Component[wix:File[@Source='$(var.MyWindowsService.TargetDir)\MyWindowsService.exe']]">
     <xsl:copy>
       <xsl:apply-templates select="node() | @*" />
       <wix:ServiceInstall Id="MyServiceInstall" DisplayName="[SERVICENAME]" Description="[SERVICENAME]" Name="[SERVICENAME]" ErrorControl="ignore" Start="auto" Type="ownProcess" Vital="yes" Interactive="no" Account="[SERVICEUSER]" Password="[SERVICEPSWD]" />
       <wix:ServiceControl Id="MyServiceControl" Name="[SERVICENAME]" Start="install" Stop="both" Remove="uninstall" Wait="yes"/>
-      <util:User Id="user" CreateUser="no" Name ="[SERVICEUSER]" Password="[SERVICEPSWD]" LogonAsService="yes" />
+      <!-- Uncomment this line if you are using Windows (Domain) Users instead of localsystem -->
+      <!--<util:User Id="user" CreateUser="no" Name ="[SERVICEUSER]" Password="[SERVICEPSWD]" LogonAsService="yes" />-->
     </xsl:copy>
-  </xsl:template>-->
+  </xsl:template>
 
   <xsl:template match="wix:Component[wix:File[@Source='$(var.MyWindowsService.TargetDir)\MyWindowsService.exe.config']]">
     <xsl:copy>

@@ -35,9 +35,9 @@
 
     <Property Id="SETTING1" Value="setup1" />
     <Property Id="SETTING2" Value="setup2" />
-    <!--<Property Id="SERVICEUSER" Value="ServiceUserName" />
-    <Property Id="SERVICEPSWD" Value="ThisIsThePassword" />
-    <Property Id="SERVICENAME" Value="$(var.CompanyName) $(var.ProductName)" />-->
+    <Property Id="SERVICEUSER" Value="LocalSystem" /> <!-- This can also be a Windows (Domain) User, check XslTransformation! -->
+    <Property Id="SERVICEPSWD" Value="NotUsedForLocalSystem" />
+    <Property Id="SERVICENAME" Value="$(var.CompanyName) $(var.ProductName)" />
     <UIRef Id="CustomInstallerUI" />
 
   </Product>
